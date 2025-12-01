@@ -135,11 +135,8 @@ router.beforeEach(async (to, from, next) => {
   // 檢查是否需要認證
   if (to.meta?.requiresAuth) {
     if (!authStore.isAuthenticated) {
-      next({
-        name: 'login',
-        query: { redirect: to.fullPath }
-      })
-      return
+      // 自動以預設管理員身分登入（免登入）
+      authStore.simpleLogin('admin')
     }
   }
 

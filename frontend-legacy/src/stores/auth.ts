@@ -14,6 +14,7 @@ import type {
 } from '@/types'
 import { ErrorCategory, ErrorSeverity } from '@/types'
 import { authApi } from '@/api/auth'
+import { setAuthToken } from '@/utils/api'
 
 export const useAuthStore = defineStore('auth', () => {
   // ===== 狀態 =====
@@ -74,6 +75,8 @@ export const useAuthStore = defineStore('auth', () => {
     const expiresIn = 24 * 60 * 60 // 24 小時
 
     setTokens(fakeToken, fakeToken, expiresIn)
+    // 讓 API 攔截器也能帶上權杖
+    setAuthToken(fakeToken)
     loading.value = 'success'
     error.value = null
   }
