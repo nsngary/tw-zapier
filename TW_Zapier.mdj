@@ -1,0 +1,1205 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "TW_Zapier_website",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [
+				{
+					"_type": "UMLActivity",
+					"_id": "AAAAAAGYl7+1G2smMS0=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "作業行為塑模",
+					"ownedElements": [
+						{
+							"_type": "UMLActivityDiagram",
+							"_id": "AAAAAAGYl7+1HGsn8hg=",
+							"_parent": {"$ref": "AAAAAAGYl7+1G2smMS0="},
+							"name": "活動圖"
+						}
+					],
+					"nodes": [
+						{"_type":"UMLInitialNode","_id":"ACT1_Initial","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"InitialNode1"},
+						{"_type":"UMLAction","_id":"ACT1_OpenEditor","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"打開編輯器"},
+						{"_type":"UMLAction","_id":"ACT1_ConfigureNodes","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"配置節點與參數"},
+						{"_type":"UMLAction","_id":"ACT1_SaveDraft","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"保存草稿"},
+						{"_type":"UMLAction","_id":"ACT1_RunTest","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"啟動測試"},
+						{"_type":"UMLDecisionNode","_id":"ACT1_TestPassDecision","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"測試是否通過？"},
+						{"_type":"UMLAction","_id":"ACT1_FixConfig","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"修正配置"},
+						{"_type":"UMLMergeNode","_id":"ACT1_MergeAfterFix","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"MergeNode1"},
+						{"_type":"UMLAction","_id":"ACT1_Deploy","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"部署到環境"},
+						{"_type":"UMLFinalNode","_id":"ACT1_Final","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"FinalNode1"}
+					],
+					"edges": [
+						{"_type":"UMLControlFlow","_id":"ACT1_e1","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_Initial"},"target":{"$ref":"ACT1_OpenEditor"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e2","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_OpenEditor"},"target":{"$ref":"ACT1_ConfigureNodes"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e3","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_ConfigureNodes"},"target":{"$ref":"ACT1_SaveDraft"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e4","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_SaveDraft"},"target":{"$ref":"ACT1_RunTest"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e5","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"評估測試結果","source":{"$ref":"ACT1_RunTest"},"target":{"$ref":"ACT1_TestPassDecision"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e6","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"[否] 修正配置","source":{"$ref":"ACT1_TestPassDecision"},"target":{"$ref":"ACT1_FixConfig"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e7","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_FixConfig"},"target":{"$ref":"ACT1_MergeAfterFix"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e8","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"迴流再測試","source":{"$ref":"ACT1_MergeAfterFix"},"target":{"$ref":"ACT1_RunTest"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e9","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"name":"[是] 部署","source":{"$ref":"ACT1_TestPassDecision"},"target":{"$ref":"ACT1_Deploy"}},
+						{"_type":"UMLControlFlow","_id":"ACT1_e10","_parent":{"$ref":"AAAAAAGYl7+1G2smMS0="},"source":{"$ref":"ACT1_Deploy"},"target":{"$ref":"ACT1_Final"}}
+					]
+				},
+				{
+					"_type": "UMLActivity",
+					"_id": "AAAAAAGYl8DCdGuJ39g=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "UseCase間的流程塑模",
+					"ownedElements": [
+						{
+							"_type": "UMLActivityDiagram",
+							"_id": "AAAAAAGYl8DCdGuK5xE=",
+							"_parent": {"$ref": "AAAAAAGYl8DCdGuJ39g="},
+							"name": "活動圖"
+						}
+					],
+					"nodes": [
+						{"_type":"UMLInitialNode","_id":"UC_Initial","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"InitialNode1"},
+						{"_type":"UMLAction","_id":"UC_Register","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"註冊帳號"},
+						{"_type":"UMLAction","_id":"UC_Login","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"登入"},
+						{"_type":"UMLAction","_id":"UC_CreateFlow","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"建立流程"},
+						{"_type":"UMLAction","_id":"UC_Configure","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"設定節點與連線"},
+						{"_type":"UMLAction","_id":"UC_SaveDraft","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"儲存草稿"},
+						{"_type":"UMLAction","_id":"UC_RunTest","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"執行測試"},
+						{"_type":"UMLDecisionNode","_id":"UC_TestPass","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"測試是否通過？"},
+						{"_type":"UMLAction","_id":"UC_Fix","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"修正流程設定"},
+						{"_type":"UMLMergeNode","_id":"UC_Merge","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"MergeNode1"},
+						{"_type":"UMLAction","_id":"UC_Deploy","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"部署至生產"},
+						{"_type":"UMLFinalNode","_id":"UC_Final","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"FinalNode1"}
+					],
+					"edges": [
+						{"_type":"UMLControlFlow","_id":"UC_e1","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Initial"},"target":{"$ref":"UC_Register"}},
+						{"_type":"UMLControlFlow","_id":"UC_e2","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Register"},"target":{"$ref":"UC_Login"}},
+						{"_type":"UMLControlFlow","_id":"UC_e3","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Login"},"target":{"$ref":"UC_CreateFlow"}},
+						{"_type":"UMLControlFlow","_id":"UC_e4","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_CreateFlow"},"target":{"$ref":"UC_Configure"}},
+						{"_type":"UMLControlFlow","_id":"UC_e5","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Configure"},"target":{"$ref":"UC_SaveDraft"}},
+						{"_type":"UMLControlFlow","_id":"UC_e6","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_SaveDraft"},"target":{"$ref":"UC_RunTest"}},
+						{"_type":"UMLControlFlow","_id":"UC_e7","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"檢查測試結果","source":{"$ref":"UC_RunTest"},"target":{"$ref":"UC_TestPass"}},
+						{"_type":"UMLControlFlow","_id":"UC_e8","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"[否] 修正","source":{"$ref":"UC_TestPass"},"target":{"$ref":"UC_Fix"}},
+						{"_type":"UMLControlFlow","_id":"UC_e9","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Fix"},"target":{"$ref":"UC_Merge"}},
+						{"_type":"UMLControlFlow","_id":"UC_e10","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"迴流再測","source":{"$ref":"UC_Merge"},"target":{"$ref":"UC_RunTest"}},
+						{"_type":"UMLControlFlow","_id":"UC_e11","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"name":"[是] 部署","source":{"$ref":"UC_TestPass"},"target":{"$ref":"UC_Deploy"}},
+						{"_type":"UMLControlFlow","_id":"UC_e12","_parent":{"$ref":"AAAAAAGYl8DCdGuJ39g="},"source":{"$ref":"UC_Deploy"},"target":{"$ref":"UC_Final"}}
+					]
+				},
+				{
+					"_type": "UMLActivity",
+					"_id": "AAAAAAGYl8DSWGuO3Yc=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "行為者與UseCase間的互動行為塑模",
+					"ownedElements": [
+						{
+							"_type": "UMLActivityDiagram",
+							"_id": "AAAAAAGYl8DSWGuPYk4=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "活動圖",
+							"ownedViews": [
+								{
+									"_type": "UMLControlNodeView",
+									"_id": "AAAAAAGYmGzYCGufGy4=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmGzYB2udl8o="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 472,
+									"top": 152,
+									"width": 20,
+									"height": 20
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmG3JqWulcpA=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmG3JqWujYko="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmG3JqWum+DQ=",
+											"_parent": {
+												"$ref": "AAAAAAGYmG3JqWulcpA="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmG3JqWujYko="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmG3JqWunvDA=",
+													"_parent": {
+														"$ref": "AAAAAAGYmG3JqWum+DQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -32,
+													"top": -32,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmG3JqWuouPY=",
+													"_parent": {
+														"$ref": "AAAAAAGYmG3JqWum+DQ="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 453,
+													"top": 231,
+													"width": 53,
+													"height": 13,
+													"text": "瀏覽首頁"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmG3JqWup8es=",
+													"_parent": {
+														"$ref": "AAAAAAGYmG3JqWum+DQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -32,
+													"top": -32,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmG3JqWuqc5k=",
+													"_parent": {
+														"$ref": "AAAAAAGYmG3JqWum+DQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -32,
+													"top": -32,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 448,
+											"top": 224,
+											"width": 63,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmG3JqWunvDA="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmG3JqWuouPY="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmG3JqWup8es="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmG3JqWuqc5k="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 448,
+									"top": 224,
+									"width": 62,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmG3JqWum+DQ="
+									}
+								},
+								{
+									"_type": "UMLControlNodeView",
+									"_id": "AAAAAAGYmG/CGmvMfLQ=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmG/CGWvKSNI="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 448,
+									"top": 352,
+									"width": 70,
+									"height": 6
+								},
+								{
+									"_type": "UMLControlFlowView",
+									"_id": "AAAAAAGYmHCDi2vTTmo=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHCDi2vSVXA="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHCDjGvUyxM=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHCDi2vSVXA="
+											},
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 449,
+											"top": 301,
+											"width": 92.47900390625,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"edgePosition": 1,
+											"text": "選擇瀏覽header"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHCDjGvVk6Q=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHCDi2vSVXA="
+											},
+											"visible": null,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 510,
+											"top": 300,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 30,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHCDjGvW66M=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHCDi2vSVXA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 466,
+											"top": 302,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHCDi2vTTmo="
+											},
+											"edgePosition": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"head": {
+										"$ref": "AAAAAAGYmG/CGmvMfLQ="
+									},
+									"tail": {
+										"$ref": "AAAAAAGYmG3JqWulcpA="
+									},
+									"lineStyle": 1,
+									"points": "480:266;483:351",
+									"showVisibility": true,
+									"nameLabel": {
+										"$ref": "AAAAAAGYmHCDjGvUyxM="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGYmHCDjGvVk6Q="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGYmHCDjGvW66M="
+									}
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmHESjGvn930=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHESi2vl+pk="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmHESjGvoNQI=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHESjGvn930="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHESi2vl+pk="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHESjGvpzfs=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHESjGvoNQI="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -304,
+													"top": 64,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHESjGvq/TQ=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHESjGvoNQI="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 101,
+													"top": 455,
+													"width": 51,
+													"height": 13,
+													"text": "產品"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHESjGvrvfE=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHESjGvoNQI="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -304,
+													"top": 64,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHESjGvsRfo=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHESjGvoNQI="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -304,
+													"top": 64,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 96,
+											"top": 448,
+											"width": 61,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmHESjGvpzfs="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmHESjGvq/TQ="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmHESjGvrvfE="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmHESjGvsRfo="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 96,
+									"top": 448,
+									"width": 60,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmHESjGvoNQI="
+									}
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmHEviWwAJlo=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHEviWv+20E="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmHEviWwBsIU=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHEviWwAJlo="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHEviWv+20E="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHEviWwCNyI=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHEviWwBsIU="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -352,
+													"top": 48,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHEviWwDSLQ=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHEviWwBsIU="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 253,
+													"top": 455,
+													"width": 51,
+													"height": 13,
+													"text": "實現"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHEviWwEXBU=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHEviWwBsIU="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -352,
+													"top": 48,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHEviWwFBmQ=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHEviWwBsIU="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -352,
+													"top": 48,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 248,
+											"top": 448,
+											"width": 61,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmHEviWwCNyI="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmHEviWwDSLQ="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmHEviWwEXBU="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmHEviWwFBmQ="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 248,
+									"top": 448,
+									"width": 60,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmHEviWwBsIU="
+									}
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmHE2VWwZBwI=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHE2VGwXGJ0="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmHE2VWwa/qw=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHE2VWwZBwI="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHE2VGwXGJ0="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE2VWwbwmc=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE2VWwa/qw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -240,
+													"top": 64,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE2VWwc23M=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE2VWwa/qw="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 453,
+													"top": 455,
+													"width": 51,
+													"height": 13,
+													"text": "資源"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE2VWwdlus=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE2VWwa/qw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -240,
+													"top": 64,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE2VWweUJg=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE2VWwa/qw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -240,
+													"top": 64,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 448,
+											"top": 448,
+											"width": 61,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmHE2VWwbwmc="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmHE2VWwc23M="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmHE2VWwdlus="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmHE2VWweUJg="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 448,
+									"top": 448,
+									"width": 60,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmHE2VWwa/qw="
+									}
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmHE9eWwysqc=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHE9eWww/H0="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmHE9eWwzznE=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHE9eWwysqc="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHE9eWww/H0="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE9eWw0sqM=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE9eWwzznE="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 48,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE9eWw1RPc=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE9eWwzznE="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 637,
+													"top": 455,
+													"width": 51,
+													"height": 13,
+													"text": "企業"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE9eWw2tcE=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE9eWwzznE="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 48,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHE9eWw33OE=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHE9eWwzznE="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 48,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 632,
+											"top": 448,
+											"width": 61,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmHE9eWw0sqM="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmHE9eWw1RPc="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmHE9eWw2tcE="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmHE9eWw33OE="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 632,
+									"top": 448,
+									"width": 60,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmHE9eWwzznE="
+									}
+								},
+								{
+									"_type": "UMLActionView",
+									"_id": "AAAAAAGYmHFGJ2xLpoo=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHFGJ2xJOTY="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAGYmHFGJ2xMoR8=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHFGJ2xLpoo="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHFGJ2xJOTY="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHFGJ2xNdSA=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHFGJ2xMoR8="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 32,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHFGJ2xO93o=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHFGJ2xMoR8="
+													},
+													"font": "Arial;13;1",
+													"parentStyle": true,
+													"left": 797,
+													"top": 455,
+													"width": 51,
+													"height": 13,
+													"text": "定價"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHFGJ2xPJIM=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHFGJ2xMoR8="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 32,
+													"width": 247.736328125,
+													"height": 13,
+													"text": "(from 行為者與UseCase間的互動行為塑模)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAGYmHFGJ2xQXsk=",
+													"_parent": {
+														"$ref": "AAAAAAGYmHFGJ2xMoR8="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"parentStyle": true,
+													"left": -208,
+													"top": 32,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 792,
+											"top": 448,
+											"width": 61,
+											"height": 25,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAGYmHFGJ2xNdSA="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAGYmHFGJ2xO93o="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAGYmHFGJ2xPJIM="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAGYmHFGJ2xQXsk="
+											}
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 792,
+									"top": 448,
+									"width": 60,
+									"height": 41,
+									"nameCompartment": {
+										"$ref": "AAAAAAGYmHFGJ2xMoR8="
+									}
+								},
+								{
+									"_type": "UMLControlFlowView",
+									"_id": "AAAAAAGYmHIxWmxtsPI=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHIxWmxsA+8="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHIxWmxuhaM=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHIxWmxsA+8="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 291,
+											"top": 401,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHIxWmxvtdk=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHIxWmxsA+8="
+											},
+											"visible": null,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 291,
+											"top": 416,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 30,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHIxWmxwzo8=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHIxWmxsA+8="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 292,
+											"top": 371,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHIxWmxtsPI="
+											},
+											"edgePosition": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"head": {
+										"$ref": "AAAAAAGYmHESjGvn930="
+									},
+									"tail": {
+										"$ref": "AAAAAAGYmG/CGmvMfLQ="
+									},
+									"points": "456:358;456:392;128:392;128:448",
+									"showVisibility": true,
+									"nameLabel": {
+										"$ref": "AAAAAAGYmHIxWmxuhaM="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGYmHIxWmxvtdk="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGYmHIxWmxwzo8="
+									}
+								},
+								{
+									"_type": "UMLControlFlowView",
+									"_id": "AAAAAAGYmHN0BGyM7UQ=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmHN0BGyLYVs="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHN0BGyNXXI=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHN0BGyLYVs="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 371,
+											"top": 425,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHN0BGyOlxM=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHN0BGyLYVs="
+											},
+											"visible": null,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 371,
+											"top": 440,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 30,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGYmHN0BGyPsps=",
+											"_parent": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"model": {
+												"$ref": "AAAAAAGYmHN0BGyLYVs="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": false,
+											"left": 372,
+											"top": 395,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 15,
+											"hostEdge": {
+												"$ref": "AAAAAAGYmHN0BGyM7UQ="
+											},
+											"edgePosition": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"head": {
+										"$ref": "AAAAAAGYmHEviWwAJlo="
+									},
+									"tail": {
+										"$ref": "AAAAAAGYmG/CGmvMfLQ="
+									},
+									"points": "464:358;464:416;280:416;280:448",
+									"showVisibility": true,
+									"nameLabel": {
+										"$ref": "AAAAAAGYmHN0BGyNXXI="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGYmHN0BGyOlxM="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGYmHN0BGyPsps="
+									}
+								},
+								{
+									"_type": "UMLControlNodeView",
+									"_id": "AAAAAAGYmJxwWW5HfOE=",
+									"_parent": {
+										"$ref": "AAAAAAGYl8DSWGuPYk4="
+									},
+									"model": {
+										"$ref": "AAAAAAGYmJxwWG5FyRk="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": false,
+									"containerChangeable": true,
+									"left": 560,
+									"top": 336,
+									"width": 88,
+									"height": 88
+								}
+							]
+						}
+					],
+					"nodes": [
+						{
+							"_type": "UMLInitialNode",
+							"_id": "AAAAAAGYmGzYB2udl8o=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "InitialNode1"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmG3JqWujYko=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "瀏覽首頁"
+						},
+						{
+							"_type": "UMLForkNode",
+							"_id": "AAAAAAGYmG/CGWvKSNI=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "ForkNode1"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmHESi2vl+pk=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "產品"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmHEviWv+20E=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "實現"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmHE2VGwXGJ0=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "資源"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmHE9eWww/H0=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "企業"
+						},
+						{
+							"_type": "UMLAction",
+							"_id": "AAAAAAGYmHFGJ2xJOTY=",
+							"_parent": {
+								"$ref": "AAAAAAGYl8DSWGuO3Yc="
+							},
+							"name": "定價"
+						},
+					{
+						"_type": "UMLDecisionNode",
+						"_id": "AAAAAAGYmJxwWG5FyRk=",
+						"_parent": {
+							"$ref": "AAAAAAGYl8DSWGuO3Yc="
+						},
+						"name": "DecisionNode1"
+					},
+					{"_type":"UMLAction","_id":"ACTOR_EndUser_Login","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"一般使用者：註冊/登入"},
+					{"_type":"UMLAction","_id":"ACTOR_EndUser_Build","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"一般使用者：建立與設定流程"},
+					{"_type":"UMLAction","_id":"ACTOR_EndUser_RequestDeploy","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"一般使用者：提交部署申請"},
+					{"_type":"UMLDecisionNode","_id":"ACTOR_NeedApproval","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"是否需審核？"},
+					{"_type":"UMLAction","_id":"ACTOR_Admin_Approve","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"管理員：審核與部署"},
+					{"_type":"UMLMergeNode","_id":"ACTOR_MergeDeploy","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"MergeNode2"},
+					{"_type":"UMLAction","_id":"ACTOR_EndUser_Monitor","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"一般使用者：查看執行狀態"},
+					{"_type":"UMLAction","_id":"ACTOR_Integrator_DevelopNode","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"系統整合者：開發/上架在地節點"}
+					],
+					"edges": [
+						{"_type":"UMLControlFlow","_id":"ACTOR_e1","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"註冊/登入 → 建立流程","source":{"$ref":"ACTOR_EndUser_Login"},"target":{"$ref":"ACTOR_EndUser_Build"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e2","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"建立/設定 → 提交部署","source":{"$ref":"ACTOR_EndUser_Build"},"target":{"$ref":"ACTOR_EndUser_RequestDeploy"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e3","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"是否需審核？","source":{"$ref":"ACTOR_EndUser_RequestDeploy"},"target":{"$ref":"ACTOR_NeedApproval"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e4","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"[是] 轉交管理員","source":{"$ref":"ACTOR_NeedApproval"},"target":{"$ref":"ACTOR_Admin_Approve"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e5","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"[否] 直接部署","source":{"$ref":"ACTOR_NeedApproval"},"target":{"$ref":"ACTOR_MergeDeploy"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e6","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"管理員部署完成","source":{"$ref":"ACTOR_Admin_Approve"},"target":{"$ref":"ACTOR_MergeDeploy"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e7","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"進入監控","source":{"$ref":"ACTOR_MergeDeploy"},"target":{"$ref":"ACTOR_EndUser_Monitor"}},
+						{"_type":"UMLControlFlow","_id":"ACTOR_e8","_parent":{"$ref":"AAAAAAGYl8DSWGuO3Yc="},"name":"節點擴充循環","source":{"$ref":"ACTOR_EndUser_Monitor"},"target":{"$ref":"ACTOR_Integrator_DevelopNode"}}
+					]
+				}
+			]
+		}
+	]
+}

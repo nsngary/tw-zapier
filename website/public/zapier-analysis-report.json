@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-08-05T17:09:54.992Z",
+  "buttonPosition": {
+    "x": 160,
+    "y": 56.5,
+    "width": 97.0625,
+    "height": 36
+  },
+  "dropdownPosition": {
+    "x": 0,
+    "y": 103,
+    "width": 1280,
+    "height": 448
+  },
+  "relativePosition": {
+    "offsetX": -160,
+    "offsetY": 10.5,
+    "width": 1280,
+    "height": 448
+  },
+  "dropdownStyles": {
+    "position": "absolute",
+    "top": "56px",
+    "left": "0px",
+    "transform": "none",
+    "width": "1280px",
+    "maxWidth": "none",
+    "zIndex": "auto"
+  },
+  "navStyles": {
+    "position": "static",
+    "width": "473.453px",
+    "maxWidth": "none",
+    "margin": "0px",
+    "padding": "0px"
+  },
+  "recommendations": [
+    "使用 position: absolute 定位下拉選單",
+    "設置 left: 50%; transform: translateX(-50%) 實現居中對齊",
+    "使用 max-width 限制下拉選單寬度",
+    "確保 z-index 足夠高以覆蓋其他元素"
+  ]
+}

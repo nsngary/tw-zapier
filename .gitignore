@@ -1,0 +1,56 @@
+# 作業系統與編輯器
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+.fleet
+
+# 環境與機密
+.env
+.env.*
+!.env.example
+
+# Node / 前端
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.nuxt/
+.nitro/
+.output/
+.cache/
+.data/
+dist/
+out/
+*.tsbuildinfo
+.eslintcache
+playwright-report/
+test-results/
+coverage/
+
+# Python / 後端
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# 日誌與暫存
+logs/
+*.log
+tmp/
+temp/
+*.swp
+*.swo
+
+# 資料備份
+database/backups/

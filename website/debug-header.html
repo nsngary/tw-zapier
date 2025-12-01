@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Navigation Debug Tool</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .debug-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .debug-info {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-panel">
+        <div class="debug-title">🔍 Header Navigation Debug Tool</div>
+        <p>這個工具可以幫助分析 HeaderNavigation_test.vue 組件的下拉選單位置和對齊問題。</p>
+        
+        <button class="test-button" onclick="analyzeHeader()">分析 Header 結構</button>
+        <button class="test-button" onclick="testDropdowns()">測試下拉選單</button>
+        <button class="test-button" onclick="testHoverEffects()">測試懸停效果</button>
+        <button class="test-button" onclick="checkAlignment()">檢查對齊</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <div class="debug-panel">
+        <div class="debug-title">📱 測試頁面預覽</div>
+        <iframe src="http://localhost:3000/test-header" id="testFrame"></iframe>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        function logCode(code) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'debug-info';
+            div.textContent = code;
+            results.appendChild(div);
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function analyzeHeader() {
+            clearResults();
+            log('開始分析 Header 結構...', 'info');
+            
+            try {
+                const frame = document.getElementById('testFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                
+                // 分析主要容器
+                const headerContainer = frameDoc.querySelector('header .max-w-7xl');
+                if (headerContainer) {
+                    const rect = headerContainer.getBoundingClientRect();
+                    log(`✅ Header 容器找到`, 'success');
+                    logCode(`Header 容器尺寸:
+寬度: ${rect.width}px
+高度: ${rect.height}px
+左邊距: ${rect.left}px
+右邊距: ${rect.right}px`);
+                } else {
+                    log('❌ 找不到 Header 容器', 'error');
+                }
+
+                // 分析導航項目
+                const navItems = frameDoc.querySelectorAll('nav .relative.group');
+                log(`✅ 找到 ${navItems.length} 個導航項目`, 'success');
+                
+                navItems.forEach((item, index) => {
+                    const button = item.querySelector('button');
+                    const text = button ? button.textContent.trim() : '未知';
+                    const rect = item.getBoundingClientRect();
+                    logCode(`導航項目 ${index + 1}: "${text}"
+位置: (${rect.left}, ${rect.top})
+尺寸: ${rect.width} x ${rect.height}`);
+                });
+
+            } catch (error) {
+                log(`❌ 分析失敗: ${error.message}`, 'error');
+            }
+        }
+
+        async function testDropdowns() {
+            clearResults();
+            log('開始測試下拉選單...', 'info');
+            
+            try {
+                const frame = document.getElementById('testFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                
+                const navItems = frameDoc.querySelectorAll('nav .relative.group');
+                
+                for (let i = 0; i < navItems.length; i++) {
+                    const navItem = navItems[i];
+                    const button = navItem.querySelector('button');
+                    const dropdown = navItem.querySelector('.absolute.top-full');
+                    const text = button ? button.textContent.trim() : `項目 ${i + 1}`;
+                    
+                    log(`測試 "${text}" 下拉選單...`, 'info');
+                    
+                    if (dropdown) {
+                        // 觸發懸停
+                        const mouseEnterEvent = new MouseEvent('mouseenter', { bubbles: true });
+                        navItem.dispatchEvent(mouseEnterEvent);
+                        
+                        // 等待動畫
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                        
+                        const isVisible = window.getComputedStyle(dropdown).opacity > 0;
+                        const rect = dropdown.getBoundingClientRect();
+                        
+                        if (isVisible) {
+                            log(`✅ "${text}" 下拉選單可見`, 'success');
+                            logCode(`下拉選單尺寸:
+寬度: ${rect.width}px
+高度: ${rect.height}px
+左邊距: ${rect.left}px
+右邊距: ${rect.right}px
+是否溢出右邊界: ${rect.right > window.innerWidth ? '是' : '否'}`);
+                        } else {
+                            log(`❌ "${text}" 下拉選單不可見`, 'error');
+                        }
+                        
+                        // 移除懸停
+                        const mouseLeaveEvent = new MouseEvent('mouseleave', { bubbles: true });
+                        navItem.dispatchEvent(mouseLeaveEvent);
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    } else {
+                        log(`❌ "${text}" 找不到下拉選單`, 'error');
+                    }
+                }
+                
+            } catch (error) {
+                log(`❌ 測試失敗: ${error.message}`, 'error');
+            }
+        }
+
+        async function testHoverEffects() {
+            clearResults();
+            log('開始測試懸停效果...', 'info');
+            
+            try {
+                const frame = document.getElementById('testFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                
+                // 先觸發第一個下拉選單
+                const firstNav = frameDoc.querySelector('nav .relative.group');
+                if (firstNav) {
+                    const mouseEnterEvent = new MouseEvent('mouseenter', { bubbles: true });
+                    firstNav.dispatchEvent(mouseEnterEvent);
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    
+                    const groupItems = frameDoc.querySelectorAll('.group-item');
+                    log(`✅ 找到 ${groupItems.length} 個可懸停項目`, 'success');
+                    
+                    if (groupItems.length > 0) {
+                        const firstItem = groupItems[0];
+                        const h5 = firstItem.querySelector('h5');
+                        
+                        if (h5) {
+                            const beforeColor = window.getComputedStyle(h5).color;
+                            log(`懸停前顏色: ${beforeColor}`, 'info');
+                            
+                            // 觸發懸停
+                            const hoverEvent = new MouseEvent('mouseenter', { bubbles: true });
+                            firstItem.dispatchEvent(hoverEvent);
+                            await new Promise(resolve => setTimeout(resolve, 100));
+                            
+                            const afterColor = window.getComputedStyle(h5).color;
+                            log(`懸停後顏色: ${afterColor}`, 'info');
+                            
+                            if (beforeColor !== afterColor) {
+                                log('✅ 懸停效果正常工作', 'success');
+                            } else {
+                                log('⚠️ 懸停效果可能未生效', 'warning');
+                            }
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                log(`❌ 測試失敗: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkAlignment() {
+            clearResults();
+            log('開始檢查對齊...', 'info');
+            
+            try {
+                const frame = document.getElementById('testFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                
+                const headerContainer = frameDoc.querySelector('header .max-w-7xl');
+                const navItems = frameDoc.querySelectorAll('nav .relative.group');
+                
+                if (headerContainer && navItems.length > 0) {
+                    const headerRect = headerContainer.getBoundingClientRect();
+                    
+                    for (let i = 0; i < navItems.length; i++) {
+                        const navItem = navItems[i];
+                        const button = navItem.querySelector('button');
+                        const dropdown = navItem.querySelector('.absolute.top-full');
+                        const text = button ? button.textContent.trim() : `項目 ${i + 1}`;
+                        
+                        // 觸發懸停顯示下拉選單
+                        const mouseEnterEvent = new MouseEvent('mouseenter', { bubbles: true });
+                        navItem.dispatchEvent(mouseEnterEvent);
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                        
+                        if (dropdown) {
+                            const dropdownRect = dropdown.getBoundingClientRect();
+                            
+                            // 檢查對齊
+                            const leftAlignDiff = Math.abs(dropdownRect.left - headerRect.left);
+                            const rightAlignDiff = Math.abs(dropdownRect.right - headerRect.right);
+                            const centerAlignDiff = Math.abs((dropdownRect.left + dropdownRect.width/2) - (headerRect.left + headerRect.width/2));
+                            
+                            log(`"${text}" 對齊分析:`, 'info');
+                            logCode(`Header 容器: ${headerRect.left} - ${headerRect.right} (寬度: ${headerRect.width})
+下拉選單: ${dropdownRect.left} - ${dropdownRect.right} (寬度: ${dropdownRect.width})
+左對齊差異: ${leftAlignDiff.toFixed(2)}px
+右對齊差異: ${rightAlignDiff.toFixed(2)}px
+中心對齊差異: ${centerAlignDiff.toFixed(2)}px`);
+                            
+                            if (leftAlignDiff < 10 && rightAlignDiff < 10) {
+                                log(`✅ "${text}" 完美對齊`, 'success');
+                            } else if (centerAlignDiff < 20) {
+                                log(`✅ "${text}" 中心對齊良好`, 'success');
+                            } else {
+                                log(`⚠️ "${text}" 對齊可能需要調整`, 'warning');
+                            }
+                        }
+                        
+                        // 移除懸停
+                        const mouseLeaveEvent = new MouseEvent('mouseleave', { bubbles: true });
+                        navItem.dispatchEvent(mouseLeaveEvent);
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    }
+                }
+                
+            } catch (error) {
+                log(`❌ 檢查失敗: ${error.message}`, 'error');
+            }
+        }
+
+        // 頁面載入完成後自動分析
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('🚀 Debug Tool 已準備就緒', 'success');
+                log('點擊上方按鈕開始分析 Header Navigation 組件', 'info');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮動動畫測試頁面</title>
+    <link rel="stylesheet" href="css/float-animation.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .test-item {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+        }
+        
+        .js-float-item {
+            width: 80%;
+            height: 80%;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .controls button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .controls button:hover {
+            background: #5a67d8;
+        }
+        
+        .info {
+            background: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        .status.active {
+            background: rgba(34, 197, 94, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="status" id="status">動畫載入中...</div>
+    
+    <div class="test-container">
+        <h1>🎭 浮動動畫測試頁面</h1>
+        
+        <div class="info">
+            <h3>📋 測試說明</h3>
+            <p>這個頁面用來測試 <code>js-float-item</code> 元素的浮動動畫效果。每個藍色方塊內的白色區域都應該有平滑的浮動、旋轉和縮放動畫。</p>
+        </div>
+        
+        <div class="controls">
+            <button onclick="toggleAnimation()">⏯️ 暫停/恢復動畫</button>
+            <button onclick="restartAnimation()">🔄 重新開始動畫</button>
+            <button onclick="toggleDebug()">🐛 切換調試模式</button>
+        </div>
+        
+        <div class="test-grid">
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 1
+                </div>
+            </div>
+            
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 2
+                </div>
+            </div>
+            
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 3
+                </div>
+            </div>
+            
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 4
+                </div>
+            </div>
+            
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 5
+                </div>
+            </div>
+            
+            <div class="test-item">
+                <div class="js-float-item">
+                    浮動元素 6
+                </div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>🔧 如何使用</h3>
+            <ul>
+                <li><strong>暫停/恢復動畫</strong>：點擊按鈕可以暫停或恢復所有浮動動畫</li>
+                <li><strong>重新開始動畫</strong>：重置動畫到初始狀態並重新開始</li>
+                <li><strong>調試模式</strong>：顯示元素邊界，方便調試動畫效果</li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <h3>⚙️ 技術細節</h3>
+            <p>動畫使用 <code>requestAnimationFrame</code> 實現，每個元素都有獨立的動畫參數：</p>
+            <ul>
+                <li>X/Y軸移動：使用正弦波函數產生平滑的浮動效果</li>
+                <li>旋轉：輕微的旋轉動畫增加視覺趣味</li>
+                <li>縮放：微小的縮放變化讓元素看起來更有生命力</li>
+                <li>相位偏移：每個元素都有不同的動畫相位，避免同步運動</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="js/float-animation.js"></script>
+    <script>
+        // 測試頁面的控制函數
+        function toggleAnimation() {
+            if (window.floatAnimation) {
+                window.floatAnimation.toggle();
+                updateStatus();
+            }
+        }
+        
+        function restartAnimation() {
+            if (window.floatAnimation) {
+                window.floatAnimation.restart();
+                updateStatus();
+            }
+        }
+        
+        function toggleDebug() {
+            document.body.classList.toggle('debug');
+        }
+        
+        function updateStatus() {
+            const status = document.getElementById('status');
+            if (window.floatAnimation && window.floatAnimation.animationId) {
+                status.textContent = '✅ 動畫運行中';
+                status.classList.add('active');
+            } else {
+                status.textContent = '⏸️ 動畫已暫停';
+                status.classList.remove('active');
+            }
+        }
+        
+        // 監聽動畫初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                updateStatus();
+            }, 200);
+        });
+        
+        // 定期更新狀態
+        setInterval(updateStatus, 1000);
+    </script>
+</body>
+</html>
